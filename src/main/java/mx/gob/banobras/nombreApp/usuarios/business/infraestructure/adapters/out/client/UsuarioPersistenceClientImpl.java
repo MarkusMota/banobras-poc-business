@@ -94,7 +94,7 @@ public class UsuarioPersistenceClientImpl implements IUsuarioPersistenceClient{
 				.setHeader("consumer-id", headerDTO.getConsumerId())
 				.setHeader("functional-id", headerDTO.getFunctionalId())
 				.setHeader("transaction-id", headerDTO.getTransactionId())
-				.uri(URI.create(urlPersistenceUsuarios+""+userInDTO.getId()))
+				.uri(URI.create(urlPersistenceUsuarios+userInDTO.getId()))
 				.GET().build();
 
 		response = client.send(request, HttpResponse.BodyHandlers.ofString());
