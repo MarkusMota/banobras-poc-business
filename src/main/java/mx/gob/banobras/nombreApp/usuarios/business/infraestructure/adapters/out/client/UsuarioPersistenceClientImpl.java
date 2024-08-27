@@ -36,9 +36,6 @@ import mx.gob.banobras.nombreApp.usuarios.business.dominio.model.Usuario;
 import mx.gob.banobras.nombreApp.usuarios.business.infraestructure.adapters.in.dto.HeaderDTO;
 import mx.gob.banobras.nombreApp.usuarios.business.infraestructure.adapters.in.dto.UsuarioDTO;
 
-
-
-
 @Component
 public class UsuarioPersistenceClientImpl implements IUsuarioPersistenceClient{
 	
@@ -79,7 +76,8 @@ public class UsuarioPersistenceClientImpl implements IUsuarioPersistenceClient{
 		HttpClient client = null;
 		HttpResponse<String> response = null;
 		
-
+		System.out.println("INICA PERSISTENCE");
+		System.out.println("urlPersistenceUsuarios == " + urlPersistenceUsuarios);
 		SSLContext sslContext = null;
 
 		if(urlPersistenceUsuarios.toUpperCase().contains("HTTPS")) {
@@ -100,7 +98,7 @@ public class UsuarioPersistenceClientImpl implements IUsuarioPersistenceClient{
 				.GET().build();
 
 		response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+		System.out.println("response: " + response);
 		return gson.fromJson(response.body(), Usuario.class);
 	}
 

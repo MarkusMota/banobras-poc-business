@@ -12,6 +12,7 @@ import mx.gob.banobras.nombreApp.usuarios.business.infraestructure.adapters.in.d
 import mx.gob.banobras.nombreApp.usuarios.business.infraestructure.adapters.in.dto.UsuarioDTO;
 
 
+
 @Service
 public class UsuarioCasoUsoServiceImpl implements IUsuarioCasoUsoService {
 
@@ -31,8 +32,14 @@ public class UsuarioCasoUsoServiceImpl implements IUsuarioCasoUsoService {
 
 		System.out.println("response.body() " + response.body());
 		if (response.statusCode() == 200) {
-			System.out.println("si entra al 200");
-			return this.iUsuarioPersistenceClient.findById(headerDTO, userInDTO);
+			System.out.println("token correcto");
+			System.out.println("invoca persistence");
+			try {
+				return this.iUsuarioPersistenceClient.findById(headerDTO, userInDTO);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new IllegalArgumentException("****", e);
+			}
 		} else {
 			return null;
 		}
